@@ -25,11 +25,17 @@ public class EmployeeService {
     return repository.findById(id);
   }
 
+
+  public void update(Employee employee) {
+    repository.update(employee);
+  }
+
   public boolean delete(long id) {
     Optional<Employee> op = findById(id);
     if (op.isPresent()) {
       Employee employee = op.get();
       employee.setStatus(EmployeeStatus.TERMINATED);
+      repository.update(employee);
       return true;
     }
     return false;
@@ -49,12 +55,7 @@ public class EmployeeService {
   public List<Employee> getAll() {
     return repository.getAllEmp();
   }
-
-//  public static void main(String[] args) {
-//    EmployeeRepository repository1 =  new EmployeeRepository();
-//    List<Employee> list = repository1.getAllEmp();
-//    list.for(System.out::println);
-//  }
+  
 
 }
 

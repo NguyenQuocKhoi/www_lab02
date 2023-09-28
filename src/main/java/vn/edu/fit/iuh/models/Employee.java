@@ -1,5 +1,9 @@
 package vn.edu.fit.iuh.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.LocalDateSerializer;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,13 +19,15 @@ import vn.edu.fit.iuh.enums.EmployeeStatus;
 public class Employee implements Serializable {
 
   @Id
-  @Column(name = "emp_id", columnDefinition = "BIGINT(20)")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "emp_id")
   private long id;
 
   @Column(name = "full_name", nullable = false, columnDefinition = "VARCHAR(150)")
   private String fullName;
-  @Column(name = "dob", nullable = false, columnDefinition = "DATETIME(6)")
+  @Column(name = "dob", nullable = false)
+  @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd")
+  @JsonSerialize(using = LocalDateSerializer.class)
   private LocalDate dob;
   @Column(name = "email", nullable = false, columnDefinition = "VARCHAR(150)")
   private String email;
@@ -31,9 +37,11 @@ public class Employee implements Serializable {
   @Column(name = "phone", nullable = false, columnDefinition = "VARCHAR(250)")
   private String phone;
   @Column(name = "status", nullable = false)
+  @Enumerated(EnumType.ORDINAL)
   private EmployeeStatus status;
 
   @OneToMany(mappedBy = "employee")
+
   private Set<Orders> orders;
 
 
@@ -107,6 +115,26 @@ public class Employee implements Serializable {
 
   public Employee(String fullName, LocalDate dob, String email, String address, String phone,
       EmployeeStatus status) {
+    this.fullName = fullName;
+    this.dob = dob;
+    this.email = email;
+    this.address = address;
+    this.phone = phone;
+    this.status = status;
+  }
+
+  public Employee(String fullName, LocalDate dob, String email, String address, String phone) {
+    this.fullName = fullName;
+    this.dob = dob;
+    this.email = email;
+    this.address = address;
+    this.phone = phone;
+  }
+
+  public Employee(long id, String fullName, LocalDate dob, String email, String address,
+      String phone,
+      EmployeeStatus status) {
+    this.id = id;
     this.fullName = fullName;
     this.dob = dob;
     this.email = email;

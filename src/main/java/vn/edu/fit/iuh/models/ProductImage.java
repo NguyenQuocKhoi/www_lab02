@@ -14,8 +14,9 @@ import java.io.Serializable;
 @Table(name = "product_image")
 public class ProductImage implements Serializable {
   @Id
-  @Column(name = "image_id", columnDefinition = "bigint(20)")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "image_id")
+
   private long id;
 
   @Column(columnDefinition = "varchar(250)", nullable = false)

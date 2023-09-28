@@ -7,7 +7,7 @@
 </head>
 <body>
 <a href="controls?action=emp_list">Employee</a> <br>
-<a href="">Product</a> <br>
-<a href="">Customer</a>
+<a href="controls?action=p_list">Product</a> <br>
+<a href="controls?action=cus_list">Customer</a>
 </body>
 </html>

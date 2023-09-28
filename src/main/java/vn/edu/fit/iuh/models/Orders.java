@@ -9,8 +9,9 @@ import java.time.LocalDateTime;
 public class Orders implements Serializable {
 
   @Id
-  @Column(name = "order_id", columnDefinition = "BIGINT(20)")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "order_id")
+
   private long id;
 
   @Column(name = "order_date", columnDefinition = "DATETIME(6)")

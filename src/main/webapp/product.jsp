@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.fit.iuh.models.Employee" %>
-<%@ page import="vn.edu.fit.iuh.services.EmployeeService" %><%--
+<%@ page import="vn.edu.fit.iuh.services.EmployeeService" %>
+<%@ page import="vn.edu.fit.iuh.models.Product" %>
+<%@ page import="vn.edu.fit.iuh.services.ProductService" %><%--
   Created by IntelliJ IDEA.
   User: quockhoi
   Date: 27/09/2023
@@ -10,49 +12,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Employee</title>
+    <title>Product</title>
     <%@include file="css.jsp" %>
 </head>
 <body>
 <%
     //  List<Employee> list = (List<Employee>) session.getAttribute("emp_list");
 //    List<Employee> list = (List<Employee>) request.getAttribute("emp_list");
-    List<Employee> list = new EmployeeService().getAll();
+    List<Product> list = new ProductService().getAll();
 %>
 <div class="col-xs-12" style="height: 1090px; width: 960px; margin: auto;">
-    <h4 style="text-align:center;">Danh sách Employee</h4>
+    <h4 style="text-align:center;">Danh sách Product</h4>
     <table class="table table-striped" role="table">
-        <form action="controls?action=insertEmp" method="post">
+        <form action="controls?action=insertP" method="post">
             <tr>
                 <th>ID</th>
+                <th>Description</th>
+                <th>Manufacturer Name</th>
                 <th>Name</th>
-                <th>DOB</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Phone</th>
                 <th>Status</th>
-                <th colspan="2"><a href="insertEmployee.jsp">Insert</a></th>
+                <th>Unit</th>
+                <th colspan="2"><a href="insertProduct.jsp">Insert</a></th>
             </tr>
             <tbody>
-            <%for (Employee employee : list) {%>
+            <%for (Product product : list) {%>
             <tr>
 
-                <td><%=employee.getId()%>
+                <td><%=product.getId()%>
                 </td>
-                <td><%=employee.getFullName()%>
+                <td><%=product.getDescription()%>
                 </td>
-                <td><%=employee.getDob()%>
+                <td><%=product.getManufacturerName()%>
                 </td>
-                <td><%=employee.getEmail()%>
+                <td><%=product.getName()%>
                 </td>
-                <td><%=employee.getAddress()%>
+                <td><%=product.getProductStatus()%>
                 </td>
-                <td><%=employee.getPhone()%>
+                <td><%=product.getUnit()%>
                 </td>
-                <td><%=employee.getStatus()%>
-                </td>
-                <td><a href="updateEmployee.jsp?id=<%=employee.getId()%>">Update</a></td>
-                <td><a href="controls?action=delete_emp&id=<%=employee.getId()%>">Delete</a></td>
+                <td><a href="updateProduct.jsp?id=<%=product.getId()%>">Update</a></td>
+                <td><a href="controls?action=delete_p&id=<%=product.getId()%>">Delete</a></td>
                 <%
                     }
                 %>
