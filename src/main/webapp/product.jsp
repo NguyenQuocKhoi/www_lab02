@@ -32,12 +32,12 @@
                 <th>Name</th>
                 <th>Status</th>
                 <th>Unit</th>
-                <th colspan="2"><a href="insertProduct.jsp">Insert</a></th>
+                <th><a href="insertProduct.jsp">Insert</a></th>
+                <th><a href="productPrice.jsp">ProductPrice</a></th>
             </tr>
             <tbody>
             <%for (Product product : list) {%>
             <tr>
-
                 <td><%=product.getId()%>
                 </td>
                 <td><%=product.getDescription()%>

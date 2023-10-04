@@ -25,10 +25,10 @@ public class ProductResource {
   @GET
   @Path(("/{id}"))
   @Produces(value = "application/json")
-  public Response getEmp(@PathParam("id") long eid) {
-    Optional<Product> employee = productService.findById(eid);
-    if (employee.isPresent()) {
-      return Response.ok(employee).build();
+  public Response getEmp(@PathParam("id") long id) {
+    Optional<Product> product = productService.findById(id);
+    if (product.isPresent()) {
+      return Response.ok(product).build();
     }
     return Response.status(Status.BAD_REQUEST).build();
   }

@@ -9,6 +9,7 @@ import java.io.IOException;
 import vn.edu.fit.iuh.modelfrontend.CustomerModel;
 import vn.edu.fit.iuh.modelfrontend.EmployeeModel;
 import vn.edu.fit.iuh.modelfrontend.ProductModel;
+import vn.edu.fit.iuh.modelfrontend.ProductPriceModel;
 
 @WebServlet("/controls")
 public class ServletController extends HttpServlet {
@@ -38,6 +39,9 @@ public class ServletController extends HttpServlet {
         } else if (action.equals("updateP")) {
           ProductModel productModel = new ProductModel();
           productModel.update(req, resp);
+        }else if(action.equals("insertPP")){
+          ProductPriceModel productPriceModel = new ProductPriceModel();
+          productPriceModel.insert(req, resp);
         }
       }
     } catch (Exception e) {
