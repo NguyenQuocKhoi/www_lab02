@@ -4,15 +4,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Insert Employee</title>
+    <title>Update</title>
     <%@include file="css.jsp" %>
 </head>
-<body>>
+<body>
 <div class ="container p-4">
     <div class="row" style="margin-top:10px;">
         <div class="content" style="height: 1090px; width: 960px; margin: auto">
             <div class="header">
-                <h2 class="text-left" style="text-align: center">Insert Product</h2>
+                <h2 class="text-left" style="text-align: center">Update Product</h2>
             </div>
             <div class="body" style="margin-top: 10px">
                 <form action="controls?action=updateP" method="post">
@@ -23,7 +23,7 @@
                         Optional<Product> p = new ProductService().findById(id);
                     %>
                     <label class="control-label col-xs-3">ID</label>
-                    <input type="text" name="id" class="form-control" value="<%=id%>">
+                    <input type="hidden" name="id" class="form-control" value="<%=id%>">
 
                     <label class="control-label col-xs-3">Description</label>
                     <input type="text" name="description" class="form-control"

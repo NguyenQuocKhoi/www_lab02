@@ -1,57 +1,83 @@
-package vn.edu.fit.iuh.models;
+package  vn.edu.fit.iuh.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import java.io.Serializable;
-import java.util.Objects;
-import org.checkerframework.checker.units.qual.C;
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "order_detail")
-public class OrderDetail implements Serializable {
 
+public class OrderDetail {
+  private double quantity;
+  private double price;
+  private String note;
   @Id
   @ManyToOne
   @JoinColumn(name = "order_id")
-  private Orders orders;
-
+  private Orders order;
   @Id
   @ManyToOne
   @JoinColumn(name = "product_id")
   private Product product;
 
-  @Column(nullable = false)
-  private double quantity;
-  @Column(nullable = false)
-  private double price;
-
-  @Column(columnDefinition = "varchar(255)")
-  private String note;
-
   public OrderDetail() {
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof OrderDetail)) {
-      return false;
-    }
-    OrderDetail that = (OrderDetail) o;
-    return Double.compare(quantity, that.quantity) == 0
-        && Double.compare(price, that.price) == 0 && Objects.equals(orders,
-        that.orders) && Objects.equals(product, that.product) && Objects.equals(
-        note, that.note);
+  public OrderDetail(double quantity, double price, String note, Orders order, Product product) {
+    this.quantity = quantity;
+    this.price = price;
+    this.note = note;
+    this.order = order;
+    this.product = product;
+  }
+
+  public double getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(double quantity) {
+    this.quantity = quantity;
+  }
+
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
+
+  public String getNote() {
+    return note;
+  }
+
+  public void setNote(String note) {
+    this.note = note;
+  }
+
+  public Orders getOrder() {
+    return order;
+  }
+
+  public void setOrder(Orders order) {
+    this.order = order;
+  }
+
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
   }
 
   @Override
-  public int hashCode() {
-    return Objects.hash(orders, product, quantity, price, note);
+  public String toString() {
+    return "OrderDetail{" +
+        "quantity=" + quantity +
+        ", price=" + price +
+        ", note='" + note + '\'' +
+        ", order=" + order +
+        ", product=" + product +
+        '}';
   }
 }

@@ -1,15 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Insert Employee</title>
+    <title>Insert</title>
     <%@include file="css.jsp" %>
 </head>
-<body>>
+<body>
 <div class ="container p-4">
     <div class="row" style="margin-top:10px;">
         <div class="content" style="height: 1090px; width: 960px; margin: auto">
             <div class="header">
-                <h2 class="text-left" style="text-align: center">Insert Employee</h2>
+                <h2 class="text-left" style="text-align: center">Insert Product</h2>
             </div>
             <div class="body" style="margin-top: 10px">
                 <form action="controls?action=insertP" method="post">

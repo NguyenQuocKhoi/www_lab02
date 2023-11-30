@@ -7,7 +7,7 @@
     <title>Update Employee</title>
     <%@include file="css.jsp" %>
 </head>
-<body>>
+<body>
 <div class="container p-4">
     <div class="row" style="margin-top:10px;">
         <div class="content" style="height: 1090px; width: 960px; margin: auto">
@@ -24,7 +24,7 @@
                         Optional<Employee> employee = new EmployeeService().findById(id);
                     %>
                     <label class="control-label col-xs-3">ID</label>
-                    <input type="text" name="id" class="form-control"
+                    <input type="hidden" name="id" class="form-control"
                            value="<%=id%>">
 
                     <label class="control-label col-xs-3">Full Name</label>

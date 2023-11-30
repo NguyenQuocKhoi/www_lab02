@@ -15,40 +15,39 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "product_price")
-@NamedQueries({
-    @NamedQuery(name = "ProductPrice.findAll",
-        query = "select pr from  ProductPrice pr")})
+//@NamedQueries(value = {
+//    @NamedQuery(
+//        name = "ProductPrice.getPriceByProductId",
+//        query = "select price from ProductPrice where product.id=:id"
+//    )
+//})
 public class ProductPrice implements Serializable {
-
-  @Id
-  @Column(name = "price_date_time")
-  private LocalDateTime priceDateTime;
-
-  @Column(columnDefinition = "varchar(255)")
-  private String note;
-
-  @Column(nullable = false)
-  private double price;
-
 
   @ManyToOne
   @JoinColumn(name = "product_id")
   private Product product;
+  @Id
+  @Column(name = "price_date_time")
+  private LocalDateTime priceDateTime;
+  private double price;
+  private String note;
 
   public ProductPrice() {
   }
 
-  public ProductPrice(LocalDateTime priceDateTime, String note, double price, Product product) {
-    this.priceDateTime = priceDateTime;
-    this.note = note;
-    this.price = price;
+  public ProductPrice(Product product, LocalDateTime priceDateTime, double price, String note) {
     this.product = product;
+    this.priceDateTime = priceDateTime;
+    this.price = price;
+    this.note = note;
   }
 
-  public ProductPrice(LocalDateTime priceDateTime, String note, double price) {
-    this.priceDateTime = priceDateTime;
-    this.note = note;
-    this.price = price;
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
   }
 
   public LocalDateTime getPriceDateTime() {
@@ -59,14 +58,6 @@ public class ProductPrice implements Serializable {
     this.priceDateTime = priceDateTime;
   }
 
-  public String getNote() {
-    return note;
-  }
-
-  public void setNote(String note) {
-    this.note = note;
-  }
-
   public double getPrice() {
     return price;
   }
@@ -75,11 +66,11 @@ public class ProductPrice implements Serializable {
     this.price = price;
   }
 
-  public Product getProduct() {
-    return product;
+  public String getNote() {
+    return note;
   }
 
-  public void setProduct(Product product) {
-    this.product = product;
+  public void setNote(String note) {
+    this.note = note;
   }
 }

@@ -1,8 +1,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.fit.iuh.models.Employee" %>
 <%@ page import="vn.edu.fit.iuh.services.EmployeeService" %>
-<%@ page import="vn.edu.fit.iuh.models.Customer" %>
-<%@ page import="vn.edu.fit.iuh.services.CustomerService" %><%--
+<%@ page import="vn.edu.fit.iuh.models.Product" %>
+<%@ page import="vn.edu.fit.iuh.services.ProductService" %>
+<%@ page import="vn.edu.fit.iuh.models.Orders" %>
+<%@ page import="vn.edu.fit.iuh.services.OrderService" %><%--
   Created by IntelliJ IDEA.
   User: quockhoi
   Date: 27/09/2023
@@ -12,7 +14,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Customer</title>
+    <title>Product</title>
     <%@include file="css.jsp" %>
     <div class="container">
         <div class="col-xs-12">
@@ -41,45 +43,34 @@
 </head>
 <body>
 <%
-    List<Customer> list = new CustomerService().getAll();
+    //  List<Employee> list = (List<Employee>) session.getAttribute("emp_list");
+//    List<Employee> list = (List<Employee>) request.getAttribute("emp_list");
+    List<Orders> list = new OrderService().findAll();
 %>
 <div class="col-xs-12" style="height: 1090px; width: 960px; margin: auto;">
-    <h4 style="text-align:center;">Danh sách Customer</h4>
+    <h4 style="text-align:center;">Danh sách Order</h4>
     <table class="table table-striped" role="table">
-        <form action="controls?action=insertCus" method="post">
+
             <tr>
-                <th>ID</th>
-                <th>Address</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th colspan="2"><a href="insertCustomer.jsp">Insert</a></th>
+                <th>Order Date</th>
+                <th>Employee Name</th>
+                <th>Customer Name</th>
             </tr>
             <tbody>
-            <%for (Customer customer : list) {%>
+            <%for (Orders o : list) {%>
             <tr>
-
-                <td><%=customer.getId()%>
+                <td><%=o.getOrderDate()%>
                 </td>
-                <td><%=customer.getAddress()%>
+                <td><%=o.getEmployee().getFullName()%>
                 </td>
-                <td><%=customer.getCustName()%>
+                <td><%=o.getCustomer().getCustName()%>
                 </td>
-                <td><%=customer.getEmail()%>
-                </td>
-                <td><%=customer.getPhone()%>
-                </td>
-                <td><a href="updateCustomer.jsp?id=<%=customer.getId()%>">Update</a></td>
-<%--                <td><a href="controls?action=delete_emp&id=<%=customer.getId()%>">Delete</a></td>--%>
                 <%
                     }
                 %>
             </tr>
 
             </tbody>
-
-
-        </form>
     </table>
 </div>
 </body>
